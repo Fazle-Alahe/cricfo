@@ -220,7 +220,7 @@
 	                            <a class="dropdown-item" href="#"><span class="font-icon glyphicon glyphicon-cog"></span>Settings</a>
 	                            <a class="dropdown-item" href="#"><span class="font-icon glyphicon glyphicon-question-sign"></span>Help</a>
 	                            <div class="dropdown-divider"></div>
-	                            <a class="dropdown-item" href="#"><span class="font-icon glyphicon glyphicon-log-out"></span>Logout</a>
+	                            <a class="dropdown-item" href="{{route('logout')}}"><span class="font-icon glyphicon glyphicon-log-out"></span>Logout</a>
 	                        </div>
 	                    </div>
 	
@@ -272,10 +272,11 @@
 	        <li class="brown with-sub">
 	            <span>
 	                <i class="font-icon glyphicon glyphicon-tint"></i>
-	                <span class="lbl">Skins</span>
+	                <span class="lbl">Category</span>
 	            </span>
 	            <ul>
-	                <li><a href="theme-side-ebony-clay.html"><span class="lbl">Ebony Clay</span></a></li>
+	                <li><a href="{{route('category')}}"><span class="lbl">Add category</span></a></li>
+	                {{-- <li><a href="theme-side-ebony-clay.html"><span class="lbl">Category list</span></a></li> --}}
 	            </ul>
 	        </li>
 	        <li class="purple with-sub">
@@ -430,6 +431,10 @@
 
 	<div class="page-content">
 	    <div class="container-fluid">
+			
+			@if (session('logged'))
+				<div class="alert alert-success">{{session('logged')}}</div>
+			@endif
             @yield('content')
 	        {{-- <div class="row">
 	            <div class="col-xl-6">
