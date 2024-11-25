@@ -9,7 +9,10 @@ use Illuminate\Http\Request;
 class CategoryController extends Controller
 {
     public function category(){
-        return view('admin.category.add_category');
+        $categories = Category::all();
+        return view('admin.category.add_category',[
+            'categories' => $categories,
+        ]);
     }
 
     public function category_store(Request $request){

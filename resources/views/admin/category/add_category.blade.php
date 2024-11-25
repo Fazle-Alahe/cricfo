@@ -18,9 +18,9 @@
                         <div class="form-group">
                             <select class="form-control" name="category_id" aria-label="Default select example">
                                 <option value="">Select a category</option>
-                                <option value="1">One</option>
-                                <option value="2">Two</option>
-                                <option value="3">Three</option>
+                                @foreach ($categories as $category)
+                                    <option value="{{  }}">{{ $category->category_name }}</option>
+                                @endforeach
                             </select>
                         </div>
                         <div class="form-group">
