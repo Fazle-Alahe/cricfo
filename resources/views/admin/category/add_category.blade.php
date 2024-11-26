@@ -57,5 +57,8 @@
                 </div>
             </div>
         </div>
+
+        
+        {!! Main::ShowUploadImageHtml('image123', '', 'image') !!}
     </div>
 @endsection
