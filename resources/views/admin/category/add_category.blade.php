@@ -1,6 +1,23 @@
 @extends('layouts.admin.index')
 @section('content')
     <div class="row">
+        <div class="col-lg-8">
+            <div class="card">
+                <div class="card-header">
+                    <h3>All Category</h3>
+                </div>
+                <div class="card-body">
+                    <ul>
+                        @foreach ($n_categories as $n_category)
+                            <li>--> {{ $n_category->category_name }}</li>
+                            @foreach ($n_category->childrenCategories as $childCategory)
+                                @include('admin.category.child_category', ['childCategory' => $childCategory])
+                            @endforeach
+                        @endforeach
+                    </ul>
+                </div>
+            </div>
+        </div>
         <div class="col-lg-4 m-auto">
             <div class="card">
                 <div class="card-header">
@@ -19,7 +36,7 @@
                             <select class="form-control" name="category_id" aria-label="Default select example">
                                 <option value="">Select a category</option>
                                 @foreach ($categories as $category)
-                                    <option value="{{  }}">{{ $category->category_name }}</option>
+                                    <option value="{{ $category->id }}">{{ $category->category_name }}</option>
                                 @endforeach
                             </select>
                         </div>

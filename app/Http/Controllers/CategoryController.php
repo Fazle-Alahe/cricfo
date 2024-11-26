@@ -10,8 +10,10 @@ class CategoryController extends Controller
 {
     public function category(){
         $categories = Category::all();
+        $n_categories = Category::whereNull('category_id')->with('childrenCategories')->get();
         return view('admin.category.add_category',[
             'categories' => $categories,
+            'n_categories' => $n_categories,
         ]);
     }
 
@@ -22,7 +24,7 @@ class CategoryController extends Controller
 
         Category::insert([
             'category_name' => $request->category_name,
-            'parent_id' => $request->category_id,
+            'category_id' => $request->category_id,
             'created_at' => Carbon::now(),
         ]);
         return back()->with('success', 'Category added successfully.');
