@@ -7,6 +7,8 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rules\Password;
+use Illuminate\Support\Str;
+use Intervention\Image\Facades\Image;
 
 class HomeController extends Controller
 {
@@ -74,5 +76,35 @@ class HomeController extends Controller
     public function logout(){
         Auth::logout();
         return redirect()->route('index');
+    }
+
+    // imageUpload
+    public function upload_image(Request $request){
+        $request->validate([
+            // 'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:1024',
+            'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:1024',
+        ]);
+
+        if ($request->hasFile('image')) {
+            
+            $image = $request->image;
+            $extension = $image->extension();
+            $file_name = uniqid() .random_int(50000, 60000).'.'.$extension;
+            Image::make($image)->save(public_path('uploads/category/'.$file_name));
+            // $file = $request->file('image');
+            // $file_name = $file->getClientOriginalExtension();
+            // $path = $file->store('images', 'public');
+            // $filePath = $file->move(public_path('uploads/category/',$file_name));
+            // $filePath = $file->move(public_path('uploads/category/'.$image));
+    
+            $previewPath = asset('uploads/category/' . $file_name);
+    
+            return response()->json([
+                'success' => true,
+                'filePath' => $file_name,
+                'previewPath' => $previewPath,
+            ]);
+        }
+    
     }
 }

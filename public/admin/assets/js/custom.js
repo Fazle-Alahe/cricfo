@@ -1,5 +1,7 @@
 
-
+$(document).ready(function() {
+    $('.upload-button').on('click', handleUploadButtonClick);
+});
 
 function handleUploadButtonClick(event) {
     event.preventDefault();
@@ -15,13 +17,18 @@ function handleUploadButtonClick(event) {
         if (file) {
             const formData = new FormData();
             formData.append('image', file);
-            formData.append('_token', csrf_token);
-     $.ajax({
-                url: site_url+'/upload-image',
+            // formData.append('_token', csrf_token);
+        $.ajax({
+                // url: site_url+'/upload-image',
+                url: '/upload-image',
                 type: 'POST',
                 data: formData,
                 contentType: false,
                 processData: false,
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                // headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
                 success: function(data) {
                     if (data.success) {
 
@@ -40,3 +47,9 @@ function handleUploadButtonClick(event) {
         }
        });
     }
+
+// $('.btn').click(function() {
+//     $('#inputid_file').click();
+
+//     handleUploadButtonClick();
+// });

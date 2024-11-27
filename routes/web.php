@@ -21,6 +21,9 @@ Route::get('/category', [CategoryController::class, 'category'])->name('category
 Route::post('/category/store', [CategoryController::class, 'category_store'])->name('category.store');
 
 
+// imageUpload
+Route::post('/upload-image', [HomeController::class, 'upload_image']);
+
 // Route::get('/dashboard', function () {
 //     return view('dashboard');
 // })->middleware(['auth', 'verified'])->name('dashboard');

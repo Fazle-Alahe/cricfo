@@ -4,6 +4,7 @@
 <head lang="en">
 	<meta charset="UTF-8">
 	<meta name="csrf-token" content="{{ csrf_token() }}">
+	{{-- <meta name="csrf-token" content="{{ csrf_token() }}"> --}}
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
 	<meta http-equiv="x-ua-compatible" content="ie=edge">
 	<title>StartUI - Premium Bootstrap 4 Admin Dashboard Template</title>
@@ -27,6 +28,10 @@
     <link rel="stylesheet" href="{{asset('admin/assets')}}/css/lib/font-awesome/font-awesome.min.css">
     <link rel="stylesheet" href="{{asset('admin/assets')}}/css/lib/bootstrap/bootstrap.min.css">
     <link rel="stylesheet" href="{{asset('admin/assets')}}/css/main.css">
+
+	{{-- <script>var csrf_token = 'csrf_token()'; </script> --}}
+	{{-- <script>var csrf_token = 'url('/')'; </script> --}}
+
 </head>
 <body class="with-side-menu control-panel control-panel-compact">
 
@@ -801,7 +806,8 @@
 			});
 		});
 	</script>
+	@stack('foot-js')
 	<script src="{{asset('admin/assets/js/custom.js')}}"></script>
-<script src="{{asset('admin/assets')}}/js/app.js"></script>
+	<script src="{{asset('admin/assets')}}/js/app.js"></script>
 </body>
 </html>

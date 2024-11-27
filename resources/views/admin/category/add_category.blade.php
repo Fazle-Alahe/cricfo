@@ -59,6 +59,16 @@
         </div>
 
         
-        {!! Main::ShowUploadImageHtml('image123', '', 'image') !!}
+        {!! Main::ShowUploadImageHtml('inputid', '', 'image') !!}
     </div>
 @endsection
+
+
+@push('foot-js')
+    <script>
+        // $('.btn').click(function() {
+        //     $('#inputid_file').click();
+
+        // });
+    </script>
+@endpush
