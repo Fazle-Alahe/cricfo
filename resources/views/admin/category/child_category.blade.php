@@ -1,5 +1,8 @@
 <ul style="padding-left: 30px" >
     <li>--> {{ $childCategory->category_name }}</li>
+    @if ( $childCategory->icon)
+        <img width="50" src="{{asset( $childCategory->icon )}}" alt="">
+    @endif
 </ul>
 
 @if ($childCategory->categories)

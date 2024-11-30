@@ -10,6 +10,9 @@
                     <ul>
                         @foreach ($n_categories as $n_category)
                             <li>--> {{ $n_category->category_name }}</li>
+                            @if ( $n_category->icon)
+                            <img width="50" src="{{asset( $n_category->icon )}}" alt="">
+                            @endif
                             @foreach ($n_category->childrenCategories as $childCategory)
                                 @include('admin.category.child_category', ['childCategory' => $childCategory])
                             @endforeach
@@ -46,20 +49,15 @@
                                 <strong class="text-danger">{{$message}}</strong>
                             @enderror
                         </div>
-                        <div class="form-group">
-                            <input type="file" name="icon" class="form-control" placeholder="Icon"/>
-                            @error('icon')
-                                <strong class="text-danger">{{$message}}</strong>
-                            @enderror
-                        </div>
-                        <button type="submit" class="btn btn-rounded btn-success sign-up">Add category</button>
+                        
+                        {!! Main::ShowUploadImageHtml('inputid', '', 'image') !!}
+
+                        <button type="submit" class="btn btn-rounded btn-success sign-up mt-3">Add category</button>
                     </form>
                 </div>
             </div>
         </div>
 
-        
-        {!! Main::ShowUploadImageHtml('inputid', '', 'image') !!}
     </div>
 @endsection
 

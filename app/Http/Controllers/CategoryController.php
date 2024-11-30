@@ -20,11 +20,15 @@ class CategoryController extends Controller
     public function category_store(Request $request){
         $request->validate([
             'category_name' => 'required | unique:categories,category_name',
+            'image' => 'required|string',
         ]);
+
+        $file_path = 'uploads/category/'.$request->input('image');
 
         Category::insert([
             'category_name' => $request->category_name,
             'category_id' => $request->category_id,
+            'icon' => $file_path,
             'created_at' => Carbon::now(),
         ]);
         return back()->with('success', 'Category added successfully.');

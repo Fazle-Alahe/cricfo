@@ -87,21 +87,25 @@ class HomeController extends Controller
 
         if ($request->hasFile('image')) {
             
-            $image = $request->image;
-            $extension = $image->extension();
-            $file_name = uniqid() .random_int(50000, 60000).'.'.$extension;
-            Image::make($image)->save(public_path('uploads/category/'.$file_name));
+            $file = $request->file('image');
+            $fileName = uniqid() .random_int(50000, 60000) . '.' . $file->getClientOriginalExtension();
+            $file->move(public_path('uploads/category/'), $fileName);
+
+            // $image = $request->image;
+            // $extension = $image->extension();
+            // $file_name = uniqid() .random_int(50000, 60000).'.'.$extension;
+            // Image::make($image)->save(public_path('uploads/category/'.$file_name));
             // $file = $request->file('image');
             // $file_name = $file->getClientOriginalExtension();
             // $path = $file->store('images', 'public');
             // $filePath = $file->move(public_path('uploads/category/',$file_name));
             // $filePath = $file->move(public_path('uploads/category/'.$image));
     
-            $previewPath = asset('uploads/category/' . $file_name);
+            $previewPath = asset('uploads/category/' . $fileName);
     
             return response()->json([
                 'success' => true,
-                'filePath' => $file_name,
+                'filePath' => $fileName,
                 'previewPath' => $previewPath,
             ]);
         }

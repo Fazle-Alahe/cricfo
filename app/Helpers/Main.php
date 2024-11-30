@@ -11,7 +11,7 @@ class Main{
         $html .= '</div>';
         $html .= '<input type="hidden" class="form-control" id="' . e($id) . '" name="' . e($name) . '" value="' . e($value) . '">';
         $html .= '<span class="input-group-btn">';
-        $html .= '<button type="button" class="btn btn-' . (($value) ? 'danger' : 'warning') . ' upload-button btn-xs mt-2" data-inputid="' . e($id) . '">' . (($value) ? 'Change Image' : 'Upload Image') . '</button>';
+        $html .= '<button type="button" class="btn btn-rounded btn-' . (($value) ? 'danger' : 'warning') . ' upload-button btn-xs mt-2" data-inputid="' . e($id) . '">' . (($value) ? 'Change Image' : 'Upload Image') . '</button>';
         $html .= '</span>';
         $html .= '<input type="file" id="' . e($id) . '_file" style="display: none">'; // Hidden file input
         $html .= '</div>';
