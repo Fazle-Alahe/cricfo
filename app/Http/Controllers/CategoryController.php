@@ -20,7 +20,7 @@ class CategoryController extends Controller
     public function category_store(Request $request){
         $request->validate([
             'category_name' => 'required | unique:categories,category_name',
-            'image' => 'required|string',
+            'icon' => 'nullable|string',
         ]);
 
         $file_path = 'uploads/category/'.$request->input('image');

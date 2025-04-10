@@ -1,14 +1,18 @@
-<ul style="padding-left: 30px" >
-    <li>--> {{ $childCategory->category_name }}</li>
-    @if ( $childCategory->icon)
-        <img width="50" src="{{asset( $childCategory->icon )}}" alt="">
-    @endif
-</ul>
 
-@if ($childCategory->categories)
+    <li>
+        --> {{ $category->category_name }}
+    </li>
+    @if ($category->icon)
+        <img width="50" src="{{ asset($category->icon) }}" alt="">
+    @endif
+
+
+@if ($category->childrenCategories->isNotEmpty())
     <ul style="padding-left: 30px">
-        @foreach ($childCategory->categories as $childCategory)
-            @include('admin.category.child_category', ['childCategory' => $childCategory])
+        @foreach ($category->childrenCategories as $childCategory)
+            @include('admin.category.child_category', [
+                'category' => $childCategory,
+            ])
         @endforeach
     </ul>
 @endif
