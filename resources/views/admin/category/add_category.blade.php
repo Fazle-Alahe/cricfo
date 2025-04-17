@@ -46,8 +46,14 @@
                                 <strong class="text-danger">{{ $message }}</strong>
                             @enderror
                         </div>
+                        <div class="form-group">
+                            <input type="file" name="image" class="form-control" />
+                            {{-- @error('category_name')
+                                <strong class="text-danger">{{ $message }}</strong>
+                            @enderror --}}
+                        </div>
 
-                        {!! Main::ShowUploadImageHtml('inputid', '', 'image') !!}
+                        {{-- {!! Main::ShowUploadImageHtml('inputid', '', 'image') !!} --}}
 
                         <button type="submit" class="btn btn-rounded btn-success sign-up mt-3">Add category</button>
                     </form>
