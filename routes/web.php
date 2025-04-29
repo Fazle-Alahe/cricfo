@@ -4,6 +4,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Http\Request;
 
 Route::get('/', function () {
     return view('layouts.admin.index');
@@ -33,5 +34,19 @@ Route::post('/upload-image', [HomeController::class, 'upload_image']);
 //     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
 //     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 // });
+Route::post('/upload-image', function (Request $request) {
+    if ($request->hasFile('file')) {
+        $file = $request->file('file');
+        $filename = uniqid() . '-' . $file->getClientOriginalName();
+
+        // Save to public/uploads
+        $file->move(public_path('uploads'), $filename);
+
+        // Return the public URL
+        return response()->json(['location' => asset('uploads/' . $filename)]);
+    }
+
+    return response()->json(['error' => 'No file uploaded.'], 400);
+});
 
 require __DIR__.'/auth.php';

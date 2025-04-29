@@ -52,3 +52,32 @@ function handleUploadButtonClick(event) {
 
 //     handleUploadButtonClick();
 // });
+// tinymce.init({
+//   selector: '#myEditor',
+//   plugins: 'image code',
+//   toolbar: 'undo redo | bold italic | image code',
+//   images_upload_url: 'upload.php', // change to your server endpoint
+//   automatic_uploads: true,
+//   file_picker_types: 'image',
+//   file_picker_callback: function (cb, value, meta) {
+//     const input = document.createElement('input');
+//     input.setAttribute('type', 'file');
+//     input.setAttribute('accept', 'image/*');
+//     input.onchange = function () {
+//       const file = this.files[0];
+//       const formData = new FormData();
+//       formData.append('file', file);
+
+//       fetch('upload.php', {
+//         method: 'POST',
+//         body: formData
+//       })
+//       .then(response => response.json())
+//       .then(result => {
+//         cb(result.location);  // expects a JSON response with { location: "url-to-image" }
+//       })
+//       .catch(() => alert('Image upload failed'));
+//     };
+//     input.click();
+//   }
+// });

@@ -15,9 +15,11 @@ class CategoryController extends Controller
     {
         $categories = Category::all();
         $n_categories = Category::whereNull('category_id')->with('childrenCategories')->get();
+        $desp = Category::find(28);
         return view('admin.category.add_category', [
             'categories' => $categories,
             'n_categories' => $n_categories,
+            'desp' => $desp,
         ]);
     }
 
@@ -39,6 +41,7 @@ class CategoryController extends Controller
             'category_name' => $request->category_name,
             'category_id' => $request->category_id,
             'icon' => $filename,
+            'description' => $request->description,
             'created_at' => Carbon::now(),
         ]);
         // dd(extension_loaded('imagick'));
