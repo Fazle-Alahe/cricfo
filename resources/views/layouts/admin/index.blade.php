@@ -1,4 +1,5 @@
-
+@auth()
+	
 <!DOCTYPE html>
 <html>
 <head lang="en">
@@ -814,3 +815,4 @@
 	<script src="{{asset('admin/assets')}}/js/app.js"></script>
 </body>
 </html>
+@endauth

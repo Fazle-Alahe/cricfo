@@ -3,13 +3,13 @@
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
-use App\Http\Middleware\Auth;
+use App\Http\Middleware\InvalidAuth;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 
 Route::get('/', function () {
     return view('layouts.admin.index');
-})->middleware(['auth', 'verified'])->name('index');
+})->middleware(InvalidAuth::class)->name('index');
 
 
 Route::get('/register', [HomeController::class, 'register'])->name('register');
@@ -19,7 +19,7 @@ Route::post('/login/store', [HomeController::class, 'login_store'])->name('login
 Route::get('/logout', [HomeController::class, 'logout'])->name('logout');
 
 // category
-Route::get('/category', [CategoryController::class, 'category'])->name('category')->middleware(Auth::class);
+Route::get('/category', [CategoryController::class, 'category'])->name('category')->middleware(InvalidAuth::class);
 Route::post('/category/store', [CategoryController::class, 'category_store'])->name('category.store');
 
 

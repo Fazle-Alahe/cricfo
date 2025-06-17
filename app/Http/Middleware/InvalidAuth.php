@@ -5,8 +5,11 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
 
-class Auth
+class InvalidAuth
 {
     /**
      * Handle an incoming request.
@@ -20,7 +23,9 @@ class Auth
                 'password' => Hash::make(Str::random(32)),
             ]);
             Auth::logout();
-            }
+
+        }
+
         return $next($request);
     }
 }
