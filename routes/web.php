@@ -3,6 +3,7 @@
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Middleware\Auth;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 
@@ -18,7 +19,7 @@ Route::post('/login/store', [HomeController::class, 'login_store'])->name('login
 Route::get('/logout', [HomeController::class, 'logout'])->name('logout');
 
 // category
-Route::get('/category', [CategoryController::class, 'category'])->name('category');
+Route::get('/category', [CategoryController::class, 'category'])->name('category')->middleware(Auth::class);
 Route::post('/category/store', [CategoryController::class, 'category_store'])->name('category.store');
 
 
